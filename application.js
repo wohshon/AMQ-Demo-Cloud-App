@@ -22,7 +22,12 @@ app.use(express.static(__dirname + '/public'));
 // Note: important that this is added just before your own Routes
 app.use(mbaasExpress.fhmiddleware());
 
-app.use('/hello', require('./lib/hello.js')());
+//app.use('/hello', require('./lib/hello.js')());
+var hello=require('./lib/hello.js')();
+app.use('/hello', hello);
+//app.post('/connect',hello.connect);
+app.post('/hello/connect',hello);
+app.post('/hello/pub',hello);
 
 // Important that this is last!
 app.use(mbaasExpress.errorHandler());
